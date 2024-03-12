@@ -1,7 +1,8 @@
 venv
 *pycache*
 .idea
-miran/media
+forum/media/files/
+forum/media/photos/
 *.sqlite3
 
 *.pyc

@@ -7,7 +7,7 @@ class Project(models.Model):
     phone = models.CharField(max_length=12,
                              validators=[RegexValidator(regex='^[0-9]*$',
                                                         message='Телефон должен состоять из цифр')])
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     project_name = models.CharField(max_length=300)
     project_description = models.TextField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True)

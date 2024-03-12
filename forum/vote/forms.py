@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import RegexValidator
 
 from .models import Project, File, Photo
 
@@ -44,14 +45,16 @@ class CreateProjectForm(forms.Form):
                            label="ФИО")
 
     phone = forms.CharField(max_length=12,
+                            validators=[RegexValidator(regex='^[0-9]*$',
+                                                       message='Телефон должен состоять из цифр')],
                             label="Номер телефона")
     email = forms.EmailField(label="Электронная почта")
     project_name = forms.CharField(max_length=300,
                                    label="Именование проекта")
     project_description = forms.CharField(widget=forms.Textarea,
                                           label="Краткое описание проекта")
-    photos = MultipleFileField(label="Фотографии проекта")
-    files = MultipleFileField(label="Файлы проекта")
+    photos = MultipleFileField(label="Фотографии проекта", required=False)
+    files = MultipleFileField(label="Файлы проекта", required=False)
 
     def __init__(self, *args, **kwargs):
         super(CreateProjectForm, self).__init__(*args, **kwargs)
