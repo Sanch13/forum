@@ -43,10 +43,13 @@ class MultipleFileField(forms.FileField):
 class CreateProjectForm(forms.Form):
     name = forms.CharField(max_length=300,
                            label="ФИО")
-
-    phone = forms.CharField(max_length=12,
-                            validators=[RegexValidator(regex='^[0-9]*$',
-                                                       message='Телефон должен состоять из цифр')],
+    code = forms.CharField(max_length=3,
+                           validators=[RegexValidator(regex='^[0-9]*$',
+                                                       message='Код должен состоять из цифр.')],
+                           initial='')
+    phone = forms.CharField(max_length=7,
+                            validators=[RegexValidator(regex='^[-0-9]*$',
+                                                       message='Телефон должен состоять из цифр.')],
                             label="Номер телефона")
     email = forms.EmailField(label="Электронная почта")
     project_name = forms.CharField(max_length=300,

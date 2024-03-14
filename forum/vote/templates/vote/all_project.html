@@ -1,0 +1,100 @@
+{% extends "vote/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Перечень проектов</title>
+{% endblock title %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-xxl">
+        <h1 class="text-center">Перечень проектов</h1>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="px-3">ФИО</th>
+                <th scope="col" class="px-3">Именование проекта</th>
+                <th scope="col" class="px-3">Краткое описание</th>
+                <th scope="col" class="px-3">Файлы проекта</th>
+            </tr>
+            </thead>
+            <tbody class="mx-3">
+            {% for project in projects %}
+                <tr class="table-success" style="vertical-align: middle">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td class="px-3">{{ project.fio }}</td>
+                    <td class="px-3">{{ project.project_name }}</td>
+                    <td class="px-3">{{ project.project_description }}</td>
+                    <td class="px-1" style="display: flex; flex-shrink: 0;">
+                        {% for obj in project.files %}
+                            <div style="flex-grow: 0;">
+                                <a href="{{ obj.file.url }}" download>
+                                    <img src="{% static 'img/button-download.webp' %}"
+                                         alt="Download File" style="max-width: 50%; height: auto;">
+                                </a>
+                            </div>
+                        {% endfor %}
+                        {% for obj in project.photos %}
+                            <div>
+                                <img src="/media/{{ obj.photo }}" alt="Download File"
+                                     style="max-width: 50%; height: auto;">
+                                <a href="{{ obj.photo.url }}" download>
+                                    <p>Скачать файл</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {#        <table>#}
+        {#            <thead>#}
+        {#            <tr>#}
+        {#                <th scope="col">#</th>#}
+        {#                <th scope="col" class="px-3">ФИО</th>#}
+        {#                <th scope="col" class="px-3">Именование проекта</th>#}
+        {#                <th scope="col" class="px-3">Файлы проекта</th>#}
+        {#                <th scope="col" class="px-3">Фото проекта</th>#}
+        {#            </tr>#}
+        {#            </thead>#}
+        {#            <tbody class="mx-3">#}
+        {#            {% for project in projects %}#}
+        {#                <tr class="table-success" style="vertical-align: middle">#}
+        {#                    <th scope="row">{{ forloop.counter }}</th>#}
+        {#                    <td class="px-3">{{ project.fio }}</td>#}
+        {#                    <td class="px-3">{{ project.project_name }}</td>#}
+        {#                    <td class="px-3" style="white-space: nowrap; display: flex; align-items: center;">#}
+        {#                        <div style="margin-right: 10px;">#}
+        {#                            {% for obj in project.files %}#}
+        {#                                <a href="{{ obj.file.url }}" download>#}
+        {#                                    <img src="{% static 'img/button-download.webp' %}"#}
+        {#                                         alt="Download File">#}
+        {#                                </a>#}
+        {#                            {% endfor %}#}
+        {#                        </div>#}
+        {#                    </td>#}
+        {#                    <td class="px-3" style="white-space: nowrap; display: flex; align-items: center;">#}
+        {#                        {% for obj in project.photos %}#}
+        {#                            <div style="margin-right: 10px;">#}
+        {#                                <img src="/media/{{ obj.photo }}"#}
+        {#                                     alt="Download File">#}
+        {#                                <a href="{{ obj.photo.url }}" download>#}
+        {#                                    <p>Скачать файл</p>#}
+        {#                                </a>#}
+        {#                            </div>#}
+        {#                        {% endfor %}#}
+        {#                    </td>#}
+        {#                </tr>#}
+        {#            {% endfor %}#}
+        {#            </tbody>#}
+        {#        </table>#}
+    </div>
+
+{% endblock content %}

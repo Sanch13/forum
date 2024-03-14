@@ -33,11 +33,12 @@
             <li class="nav-item"><a href="{% url 'index' %}" class="nav-link active" aria-current="page">Главная</a>
             </li>
             <li class="nav-item"><a href="{% url 'vote:registration_project' %}" class="nav-link">Регистрация проекта</a></li>
+            <li class="nav-item"><a href="{% url 'vote:all_project' %}" class="nav-link">Все проекты</a></li>
         </ul>
     </header>
-</div>
+
     {% block content %}
-        <h1>Главная страница форума</h1>
+        <h1 class="text-center">Главная страница инновационного саммита</h1>
     {% endblock %}
 
 </div>

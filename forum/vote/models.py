@@ -4,7 +4,11 @@ from django.db import models
 
 class Project(models.Model):
     fio = models.CharField(max_length=300)
-    phone = models.CharField(max_length=12,
+    code = models.CharField(max_length=3,
+                            validators=[RegexValidator(regex='^[0-9]*$',
+                                                       message='Код должен состоять из цифр')],
+                            default='')
+    phone = models.CharField(max_length=7,
                              validators=[RegexValidator(regex='^[0-9]*$',
                                                         message='Телефон должен состоять из цифр')])
     email = models.EmailField(unique=True)
@@ -18,7 +22,11 @@ class File(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     file = models.FileField(upload_to='files/')
 
+    # def __repr__(self):
+    #     return f"[ID: {self.project.id}] -> {self.file}"
+
 
 class Photo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='photos/')
+

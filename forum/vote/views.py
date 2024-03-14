@@ -22,6 +22,7 @@ def registration_project(request):
             print("form valid")
             try:
                 project = Project.objects.create(fio=form.cleaned_data["name"],
+                                                 code=form.cleaned_data["code"],
                                                  phone=form.cleaned_data["phone"],
                                                  email=form.cleaned_data["email"],
                                                  project_name=form.cleaned_data["project_name"],
@@ -55,4 +56,22 @@ def registration_project(request):
     }
     return render(request=request,
                   template_name="vote/registration_project.html",
+                  context=context)
+
+
+def all_project(request):
+    projects = Project.objects.all()
+
+    for project in projects:
+        project.files = File.objects.filter(project=project)
+        project.photos = Photo.objects.filter(project=project)
+
+    context = {
+        "projects": projects,
+    }
+    for obj in projects:
+        print(obj.__dict__)
+
+    return render(request=request,
+                  template_name="vote/all_project.html",
                   context=context)
