@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-from .models import Project, File, Photo
+from .models import Project, File
 
 
 class ProjectsForm(forms.ModelForm):
@@ -14,12 +14,6 @@ class FileForm(forms.ModelForm):
     class Meta:
         model = File
         fields = ["file"]
-
-
-class PhotoForm(forms.ModelForm):
-    class Meta:
-        model = Photo
-        fields = ["photo"]
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -50,13 +44,13 @@ class CreateProjectForm(forms.Form):
     phone = forms.CharField(max_length=7,
                             validators=[RegexValidator(regex='^[-0-9]*$',
                                                        message='Телефон должен состоять из цифр.')],
-                            label="Номер телефона")
+                            label="Номер телефона",
+                            initial='')
     email = forms.EmailField(label="Электронная почта")
     project_name = forms.CharField(max_length=300,
                                    label="Именование проекта")
     project_description = forms.CharField(widget=forms.Textarea,
                                           label="Краткое описание проекта")
-    photos = MultipleFileField(label="Фотографии проекта", required=False)
     files = MultipleFileField(label="Файлы проекта", required=False)
 
     def __init__(self, *args, **kwargs):
