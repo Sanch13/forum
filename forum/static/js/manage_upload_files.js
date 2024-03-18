@@ -14,13 +14,10 @@ let filesData = {
 document.getElementById("click_choose_files").addEventListener("click", function (){
     document.getElementById("id_files").click();
 })
-console.log("1")
 document.querySelector('input[type="file"]').addEventListener('change', handleChange);
-console.log("2")
 
 function handleChange(event) {
     let files = event.target.files;
-    console.log("Added files : ", files);
 
     let fileNames = '';
     for (let i = 0; i < files.length; i++) {
@@ -31,14 +28,12 @@ function handleChange(event) {
     }
 
     document.getElementById('file-names').innerHTML += fileNames;
-    console.log("Actual files on the board : ", filesData.files, filesData.fileCount);
 
     updateStateFiles()
     updateFileCount(filesData.fileCount);
-};
+}
 
 function removeFile(fileName) {
-    console.log("Deleted file : ", fileName);
     filesData.removeFile(fileName);
     filesData.fileCount--;
 
@@ -46,13 +41,14 @@ function removeFile(fileName) {
     if (fileDiv) {
         fileDiv.remove();
     }
+
     updateStateFiles()
     updateFileCount();
 }
 
 function updateFileCount() {
     document.getElementById('file-count').innerHTML = 'Файлов: ' + filesData.fileCount;
-};
+}
 
 function updateStateFiles() {
     let dt = new DataTransfer();
@@ -62,9 +58,8 @@ function updateStateFiles() {
         let newFile = new File([file], file.name, { type: file.type });
         dt.items.add(newFile);
     }
-    const fileList = dt.files;
-    console.log("Finished.files : ", fileList);
 
+    const fileList = dt.files;
     let inputElement = document.getElementById('id_files');
     inputElement.files = fileList;
 }
