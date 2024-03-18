@@ -1,5 +1,7 @@
 {% extends "vote/base.html" %}
 {% load static %}
+{% load name_project_filters %}
+
 
 {% block title %}
     <title>Перечень проектов</title>
@@ -32,10 +34,11 @@
                     <td class="px-1" style="display: flex; flex-shrink: 0;">
                         {% for obj in project.files %}
                             <div style="flex-grow: 0;">
-                                <a href="{{ obj.file.url }}" download>
-                                    <img src="{% static 'img/button-download.webp' %}"
-                                         alt="Download File" style="max-width: 50%; height: auto;">
-                                </a>
+                            <a href="{{ obj.file.url }}">{{ obj.file|split:"/"|last }}</a>
+{#                                <a href="{{ obj.file.url }}" download>#}
+{#                                    <img src="{% static 'img/button-download.webp' %}"#}
+{#                                         alt="Download File" style="max-width: 50%; height: auto;">#}
+{#                                </a>#}
                             </div>
                         {% endfor %}
                         {% for obj in project.photos %}

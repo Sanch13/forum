@@ -10,6 +10,16 @@
 
 {% block content %}
 
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 10; margin-bottom: 50px;">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success text-center" id="message">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
 <div class="container">
     <h1 class="text-center my-3"> Форма регистрации проекта </h1>
     <div class="mb-5"
@@ -140,4 +150,6 @@
     </div>
 </div>
 <script src="{% static 'js/manage_upload_files.js' %}"></script>
+<script src="{% static 'js/hide_alert_msg.js' %}"></script>
+
 {% endblock content %}

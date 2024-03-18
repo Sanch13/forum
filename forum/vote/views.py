@@ -35,15 +35,10 @@ def registration_project(request):
                     File.objects.create(project=project, file=file)
 
                 messages.success(request, 'Проект успешно зарегистрирован.')
-                return redirect("vote:home")
+                return redirect("vote:registration_project")
 
             except Exception as e:
-                messages.error(request, 'Произошла ошибка при регистрации проекта.')
-
-        else:
-            print(form.errors)
-            messages.error(request=request,
-                           message='Пожалуйста, введите корректные данные.')
+                messages.error(request, 'Произошла ошибка при регистрации проекта. Повторите попытку')
 
     else:
         form = CreateProjectForm()
