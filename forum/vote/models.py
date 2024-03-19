@@ -6,7 +6,7 @@ from django.db import models
 
 class Project(models.Model):
     fio = models.CharField(max_length=300)
-    code = models.CharField(max_length=3,
+    code = models.CharField(max_length=2,
                             validators=[RegexValidator(regex='^[0-9]*$',
                                                        message='Код должен состоять из цифр')],
                             default='')

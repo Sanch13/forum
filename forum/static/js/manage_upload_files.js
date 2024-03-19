@@ -47,7 +47,7 @@ function removeFile(fileName) {
 }
 
 function updateFileCount() {
-    document.getElementById('file-count').innerHTML = 'Файлов: ' + filesData.fileCount;
+    document.getElementById('file-count').innerHTML = 'Файлов: ' + filesData.fileCount + ' шт.';
 }
 
 function updateStateFiles() {

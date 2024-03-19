@@ -127,22 +127,20 @@
             </div>
             {# Файлы проекта #}
             <div class="mb-1">
-                <label class="form-label">Файлы проекта</label>
+                <label class="form-label">Файлы проекта : <span id="file-count" class="text-center"></span></label>
+
                 <div class="input-group">
                     <input type="file" name="files" id="id_files" multiple
                            style="display: none;">
-                    <button id="click_choose_files" class="btn btn-outline-success rounded"
+                    <button id="click_choose_files" class="btn btn-success rounded"
                             type="button">Выбрать
                         файлы
                     </button>
-                    <div class="d-flex align-items-center justify-content-center">
-                        <span id="file-count" class="badge bg-success text-center p-3"></span>
-                    </div>
                 </div>
                 <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
             </div>
             <div class="text-center my-3">
-                <button type="submit" class="btn btn-outline-success send-data">
+                <button type="submit" class="btn btn-success send-data">
                     Отправить данные на регистрацию
                 </button>
             </div>
