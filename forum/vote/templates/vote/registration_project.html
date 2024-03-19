@@ -66,7 +66,7 @@
                     <div style="width: 40px; position: relative; z-index: 1;">
                         <input type="text"
                                name="code"
-                               maxlength="3"
+                               maxlength="2"
                                placeholder=""
                                value="{{ form.code.value }}"
                                class="form-control px-1 text-center"
@@ -111,6 +111,20 @@
                     </div>
                 </div>
             </div>
+            {# Основная идея #}
+            <div class="mb-1">
+                <label for="{{ form.main_idea.id_for_label }}"
+                       class="form-label">{{ form.main_idea.label }}
+                    <span class="text-danger"><b>*</b></span></label>
+                <div class="input-group">
+                    {{ form.main_idea }}
+                    <div class="input-group">
+                        {% for error in form.main_idea.errors %}
+                            <div class="error-message text-danger"><b>{{ error }}</b></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
             {# Краткое описание проекта #}
             <div class="mb-1">
                 <label for="{{ form.project_description.id_for_label }}" class="form-label">
@@ -139,6 +153,27 @@
                 </div>
                 <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
             </div>
+            {# Капча #}
+            <div class="mb-1">
+                <label for="{{ form.captcha.id_for_label }}"
+                       class="form-label">{{ form.captcha.label }}
+                    <span class="text-danger"><b>*</b></span></label>
+                <div class="input-group">
+                    {{ form.captcha }}
+                    <div class="input-group">
+                        {% for error in form.captcha.errors %}
+                            <div class="error-message text-danger"><b>{{ error }}</b></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- Чекбокс -->
+            <div class="mb-1 form-check">
+                <input class="form-check-input" type="checkbox" id="checkboxAgree">
+                <label class="form-check-label" for="checkboxAgree">
+                    Я согласен на обработку моих персональных данных
+                </label>
+            </div>
             <div class="text-center my-3">
                 <button type="submit" class="btn btn-success send-data">
                     Отправить данные на регистрацию
@@ -149,5 +184,13 @@
 </div>
 <script src="{% static 'js/manage_upload_files.js' %}"></script>
 <script src="{% static 'js/hide_alert_msg.js' %}"></script>
+<script>
+    // Слушаем изменения в чекбоксе
+    document.getElementById('checkboxAgree').addEventListener('change', function () {
+        var submitBtn = document.getElementById('submitBtn');
+        // Если чекбокс отмечен, активируем кнопку отправки, в противном случае - деактивируем
+        submitBtn.disabled = !this.checked;
+    });
+</script>
 
 {% endblock content %}

@@ -1,5 +1,6 @@
 from django import forms
 from django.core.validators import RegexValidator
+from captcha.fields import CaptchaField
 
 from .models import Project, File
 
@@ -49,17 +50,18 @@ class CreateProjectForm(forms.Form):
     email = forms.EmailField(label="Электронная почта")
     project_name = forms.CharField(max_length=200,
                                    label="Наименование проекта",
-                                   widget=forms.PasswordInput(
+                                   widget=forms.TextInput(
                                        attrs={'placeholder': '200 символов'}))
     main_idea = forms.CharField(max_length=250,
                                 label="Основная идея",
-                                widget=forms.PasswordInput(
+                                widget=forms.TextInput(
                                     attrs={'placeholder': '250 символов'})
                                 )
     project_description = forms.CharField(widget=forms.Textarea,
                                           max_length=300,
                                           label="Описание проекта")
     files = MultipleFileField(label="Файлы проекта", required=False)
+    captcha = CaptchaField()
 
     def __init__(self, *args, **kwargs):
         super(CreateProjectForm, self).__init__(*args, **kwargs)

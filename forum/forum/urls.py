@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('vote/', include("vote.urls", namespace="vote")),
     path('admin/', admin.site.urls),
+    path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:
