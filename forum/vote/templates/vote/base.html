@@ -21,13 +21,15 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
 
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+
     {% block css %}
     {% endblock css %}
 </head>
 
 <body>
 
-<div class="container">
+<div class="conteiner px-2">
     <header class="d-flex justify-content-center py-2">
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="{% url 'index' %}" class="nav-link active" aria-current="page">Главная</a>
