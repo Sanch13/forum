@@ -30,7 +30,7 @@
                     <th scope="row">{{ forloop.counter }}</th>
                     <td class="px-3">{{ project.fio }}</td>
                     <td class="px-3">{{ project.project_name }}</td>
-                    <td class="px-3">{{ project.project_description }}</td>
+                    <td class="px-3">{{ project.project_description|truncatewords:30  }}</td>
                     <td class="px-1" style="display: flex; flex-shrink: 0;">
                         {% for obj in project.files %}
                             <div style="flex-grow: 0;">

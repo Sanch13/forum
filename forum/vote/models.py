@@ -14,6 +14,7 @@ class Project(models.Model):
                              validators=[RegexValidator(regex='^[0-9]*$',
                                                         message='Телефон должен состоять из цифр')])
     email = models.EmailField()
+    main_idea = models.CharField(max_length=250)
     project_name = models.CharField(max_length=300, unique=True)
     project_description = models.TextField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True)

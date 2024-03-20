@@ -58,10 +58,9 @@ class CreateProjectForm(forms.Form):
                                     attrs={'placeholder': '250 символов'})
                                 )
     project_description = forms.CharField(widget=forms.Textarea,
-                                          max_length=300,
                                           label="Описание проекта")
     files = MultipleFileField(label="Файлы проекта", required=False)
-    captcha = CaptchaField()
+    captcha = CaptchaField(label='')
 
     def __init__(self, *args, **kwargs):
         super(CreateProjectForm, self).__init__(*args, **kwargs)

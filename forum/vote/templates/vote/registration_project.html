@@ -155,10 +155,7 @@
             </div>
             {# Капча #}
             <div class="mb-1">
-                <label for="{{ form.captcha.id_for_label }}"
-                       class="form-label">{{ form.captcha.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
+                <div class="input-group" >
                     {{ form.captcha }}
                     <div class="input-group">
                         {% for error in form.captcha.errors %}
@@ -175,7 +172,7 @@
                 </label>
             </div>
             <div class="text-center my-3">
-                <button type="submit" class="btn btn-success send-data">
+                <button type="submit" class="btn btn-success send-data" id="submitBtn" disabled>
                     Отправить данные на регистрацию
                 </button>
             </div>
@@ -187,7 +184,7 @@
 <script>
     // Слушаем изменения в чекбоксе
     document.getElementById('checkboxAgree').addEventListener('change', function () {
-        var submitBtn = document.getElementById('submitBtn');
+        let submitBtn = document.getElementById('submitBtn');
         // Если чекбокс отмечен, активируем кнопку отправки, в противном случае - деактивируем
         submitBtn.disabled = !this.checked;
     });

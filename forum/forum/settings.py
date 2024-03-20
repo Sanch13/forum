@@ -107,3 +107,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RECAPTCHA_PUBLIC_KEY = 'MyRecaptchaKey123'
 RECAPTCHA_PRIVATE_KEY = 'MyRecaptchaPrivateKey456'
+
+CAPTCHA_FONT_SIZE = 30
+CAPTCHA_LETTER_ROTATION = (-20, 20)
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null', 'captcha.helpers.noise_arcs', 'captcha.helpers.noise_dots',)
