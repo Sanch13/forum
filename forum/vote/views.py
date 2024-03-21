@@ -7,7 +7,7 @@ from .models import Project, File
 
 
 def index(request):
-    return redirect(to="vote:home")
+    return redirect(to="vote:registration_project")
 
 
 def home(request):

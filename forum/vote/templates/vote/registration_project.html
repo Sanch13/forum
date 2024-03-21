@@ -20,14 +20,15 @@
     {% endif %}
 </div>
 
-<div>
-    <h1 class="text-center my-3"> Форма регистрации проекта </h1>
-    <div class="mb-5"
+<div class="justify-content-center">
+    <div class="col-12">
+        <h3 class="text-center my-3"> Форма регистрации проекта </h3>
+        <div class="mb-5"
          style="border: 1px solid darkolivegreen; padding: 10px; border-radius: 5px;">
         <form method="post" action="{% url 'vote:registration_project' %}"
               enctype="multipart/form-data">
             {% csrf_token %}
-            {# ФИО #}
+{#             ФИО#}
             <div class="mb-1">
                 <label for="{{ form.name.id_for_label }}"
                        class="form-label">{{ form.name.label }}
@@ -41,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            {# Адрес электронной почты #}
+{#             Адрес электронной почты#}
             <div class="mb-1">
                 <label for="{{ form.email.id_for_label }}"
                        class="form-label">{{ form.email.label }}<span
@@ -55,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            {# Телефон #}
+{#             Телефон#}
             <div class="mb-1">
                 <label for="{{ form.phone.id_for_label }}"
                        class="form-label">{{ form.phone.label }}
@@ -97,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            {# Именование проекта #}
+{#             Именование проекта#}
             <div class="mb-1">
                 <label for="{{ form.project_name.id_for_label }}"
                        class="form-label">{{ form.project_name.label }}
@@ -111,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            {# Основная идея #}
+{#             Основная идея#}
             <div class="mb-1">
                 <label for="{{ form.main_idea.id_for_label }}"
                        class="form-label">{{ form.main_idea.label }}
@@ -125,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            {# Краткое описание проекта #}
+{#             Краткое описание проекта#}
             <div class="mb-1">
                 <label for="{{ form.project_description.id_for_label }}" class="form-label">
                     {{ form.project_description.label }}
@@ -139,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            {# Файлы проекта #}
+{#             Файлы проекта#}
             <div class="mb-1">
                 <label class="form-label">Файлы проекта : <span id="file-count" class="text-center"></span></label>
 
@@ -153,7 +154,7 @@
                 </div>
                 <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
             </div>
-            {# Капча #}
+             Капча
             <div class="mb-1">
                 <div class="input-group" >
                     {{ form.captcha }}
@@ -164,7 +165,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Чекбокс -->
+{#            <!-- Чекбокс -->#}
             <div class="mb-1 form-check">
                 <input class="form-check-input" type="checkbox" id="checkboxAgree">
                 <label class="form-check-label" for="checkboxAgree">
@@ -178,7 +179,9 @@
             </div>
         </form>
     </div>
+    </div>
 </div>
+
 <script src="{% static 'js/manage_upload_files.js' %}"></script>
 <script src="{% static 'js/hide_alert_msg.js' %}"></script>
 <script>

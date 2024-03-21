@@ -5,9 +5,9 @@
 
 <head>
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
-    <title>Title</title>
+        <title>Title</title>
     {% endblock title %}
 
     <link rel="stylesheet"
@@ -25,26 +25,23 @@
 
     {% block css %}
     {% endblock css %}
-</head>
 
+</head>
 <body>
 
-<div class="conteiner px-3">
-    <header class="d-flex justify-content-center py-2">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link active" aria-current="page">Главная</a>
-            </li>
-            <li class="nav-item"><a href="{% url 'vote:registration_project' %}" class="nav-link">Регистрация проекта</a></li>
-            <li class="nav-item"><a href="{% url 'vote:all_project' %}" class="nav-link">Все проекты</a></li>
-        </ul>
-    </header>
+{#    <header class="d-flex justify-content-center py-2">#}
+{#        <ul class="nav nav-pills">#}
+{#            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link active" aria-current="page">Главная</a></li>#}
+{#            <li class="nav-item"><a href="{% url 'vote:registration_project' %}" class="nav-link">Регистрация проекта</a></li>#}
+{#            <li class="nav-item"><a href="{% url 'vote:all_project' %}" class="nav-link">Все проекты</a></li>#}
+{#        </ul>#}
+{#    </header>#}
 
+<div class="container">
     {% block content %}
-        <h1 class="text-center">Главная страница инновационного саммита</h1>
+
     {% endblock %}
-
 </div>
-
 
 </body>
 </html>
