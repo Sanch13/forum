@@ -30,13 +30,13 @@
             {% csrf_token %}
 {#             ФИО#}
             <div class="mb-1">
-                <label for="{{ form.name.id_for_label }}"
-                       class="form-label">{{ form.name.label }}
+                <label for="{{ form.fio.id_for_label }}"
+                       class="form-label">{{ form.fio.label }}
                     <span class="text-danger"><b>*</b></span></label>
                 <div class="input-group">
-                    {{ form.name }}
+                    {{ form.fio }}
                     <div class="input-group">
-                        {% for error in form.name.errors %}
+                        {% for error in form.fio.errors %}
                             <div class="error-message text-danger"><b>{{ error }}</b></div>
                         {% endfor %}
                     </div>
@@ -154,8 +154,11 @@
                 </div>
                 <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
             </div>
-             Капча
+{#             Капча#}
             <div class="mb-1">
+            <label for="{{ form.captcha.id_for_label }}" class="form-label">
+                    {{ form.captcha.label }}
+                    <span class="text-danger"><b>*</b></span></label>
                 <div class="input-group" >
                     {{ form.captcha }}
                     <div class="input-group">

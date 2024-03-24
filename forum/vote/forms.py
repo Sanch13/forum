@@ -36,8 +36,8 @@ class MultipleFileField(forms.FileField):
 
 
 class CreateProjectForm(forms.Form):
-    name = forms.CharField(max_length=300,
-                           label="ФИО")
+    fio = forms.CharField(max_length=300,
+                          label="ФИО")
     code = forms.CharField(max_length=2,
                            validators=[RegexValidator(regex='^[0-9]*$',
                                                        message='Код должен состоять из цифр.')],
@@ -51,16 +51,16 @@ class CreateProjectForm(forms.Form):
     project_name = forms.CharField(max_length=200,
                                    label="Наименование проекта",
                                    widget=forms.TextInput(
-                                       attrs={'placeholder': '200 символов'}))
+                                       attrs={'placeholder': 'не более 200 символов'}))
     main_idea = forms.CharField(max_length=250,
                                 label="Основная идея",
                                 widget=forms.TextInput(
-                                    attrs={'placeholder': '250 символов'})
+                                    attrs={'placeholder': 'не более 250 символов'})
                                 )
     project_description = forms.CharField(widget=forms.Textarea,
                                           label="Описание проекта")
     files = MultipleFileField(label="Файлы проекта", required=False)
-    captcha = CaptchaField(label='')
+    captcha = CaptchaField(label='Введите правильный ответ')
 
     def __init__(self, *args, **kwargs):
         super(CreateProjectForm, self).__init__(*args, **kwargs)

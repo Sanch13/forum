@@ -21,11 +21,12 @@ def registration_project(request):
         if form.is_valid():
             try:
                 project = Project.objects.create(
-                    fio=form.cleaned_data["name"],
+                    fio=form.cleaned_data["fio"],
                     code=form.cleaned_data["code"],
                     phone=form.cleaned_data["phone"],
                     email=form.cleaned_data["email"],
                     project_name=form.cleaned_data["project_name"],
+                    main_idea=form.cleaned_data["main_idea"],
                     project_description=form.cleaned_data["project_description"]
                 )
 
