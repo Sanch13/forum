@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'captcha',
 
     'vote.apps.VoteConfig',
@@ -54,24 +55,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'forum.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': settings.ENGINE,
-#         'NAME': settings.NAME_DB,
-#         'USER': settings.USER,
-#         'PASSWORD': settings.PASSWORD,
-#         'HOST': settings.HOST,
-#         'PORT': settings.PORT,
-#
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': settings.ENGINE,
+        'NAME': settings.NAME_DB,
+        'USER': settings.USER,
+        'PASSWORD': settings.PASSWORD,
+        'HOST': settings.HOST,
+        'PORT': settings.PORT,
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
