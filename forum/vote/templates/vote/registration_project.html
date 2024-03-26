@@ -153,6 +153,7 @@
                     </button>
                 </div>
                 <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
+                <div><span id="upload-success" style="display: none;">Файлы успешно загружены.</span></div>
             </div>
 {#             Капча#}
             <div class="mb-1">
@@ -195,5 +196,26 @@
         submitBtn.disabled = !this.checked;
     });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$.ajax({
+    url: '{% url 'vote:upload_files' %}',
+    type: 'POST',
+    data: uploadFilesToServer,
+    processData: false,
+    contentType: false,
+    success: function(data) {
+        console.log(data);
+        $('#upload-success').show();
+        $('#submitBtn').prop('disabled', false); // Делаем кнопку отправки активной после успешной загрузки
+    },
+    error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+    }
+
+});
+</script>
+
 
 {% endblock content %}

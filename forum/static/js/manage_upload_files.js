@@ -60,6 +60,34 @@ function updateStateFiles() {
     }
 
     const fileList = dt.files;
+    uploadFilesToServer(fileList)
     let inputElement = document.getElementById('id_files');
     inputElement.files = fileList;
+}
+
+function uploadFilesToServer(fileList) {
+    let formData = new FormData();
+    for (let i = 0; i < fileList.length; i++) {
+        formData.append('files', fileList[i]);
+    }
+    return formData
+    //     for (let i = 0; i < filesData.files.length; i++) {
+    //     formData.append('files', filesData.files[i]);
+    // }
+
+    // $.ajax({
+    //     url: "{% url 'vote:upload_files' %}",
+    //     type: 'POST',
+    //     data: formData,
+    //     processData: false,
+    //     contentType: false,
+    //     success: function(data) {
+    //         console.log(data);
+    //         $('#upload-success').show();
+    //         $('#submitBtn').prop('disabled', false); // Делаем кнопку отправки активной после успешной загрузки
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.error(xhr.responseText);
+    //     }
+    // });
 }
