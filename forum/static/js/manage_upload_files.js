@@ -63,35 +63,4 @@ function updateStateFiles() {
     const fileList = dt.files;
     let inputElement = document.getElementById('id_files');
     inputElement.files = fileList;
-
-    uploadFilesToServer(fileList);
 }
-
-function uploadFilesToServer(files) {
-    const uploadFilesUrl = document.getElementById('upload-files-url').getAttribute('data-url');
-    console.log("uploadFilesUrl 2 ", uploadFilesUrl)
-    console.log("FileList : ", files);
-    let formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-        formData.append('files[]', files[i]);
-    }
-    console.log(formData)
-    console.log("formData.values() :", formData.values())
-    $.ajax({
-        url: uploadFilesUrl,
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-            console.log(data);
-            // Добавьте дополнительную обработку ответа сервера здесь, если необходимо
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-}
-
-
-

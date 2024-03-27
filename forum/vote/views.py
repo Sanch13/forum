@@ -1,8 +1,5 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from django.core.files.storage import default_storage
-from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CreateProjectForm
 
@@ -18,23 +15,9 @@ def home(request):
                   template_name="vote/base.html")
 
 
-uploaded_files = []
-
-
-@csrf_exempt
-def upload_files(request):
-    if request.method == 'POST' and request.FILES:
-        global uploaded_files
-        for file in request.FILES.getlist('files[]'):
-            uploaded_files.append(file)
-        return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
-
-
 def registration_project(request):
     if request.method == "POST":
         form = CreateProjectForm(data=request.POST, files=request.FILES)
-        global uploaded_files
         if form.is_valid():
             try:
                 project = Project.objects.create(
@@ -46,18 +29,16 @@ def registration_project(request):
                     main_idea=form.cleaned_data["main_idea"],
                     project_description=form.cleaned_data["project_description"]
                 )
-                # uploaded_files = form.cleaned_data.get("files")
-                for file in uploaded_files:
+
+                files = form.cleaned_data["files"]
+                for file in files:
                     File.objects.create(project=project, file=file)
 
                 messages.success(request, 'Проект успешно зарегистрирован.')
-                uploaded_files = []
                 return redirect("vote:registration_project")
 
             except Exception as e:
-                print(e)
-                messages.error(request,
-                               'Произошла ошибка при регистрации проекта. Повторите попытку')
+                messages.error(request, 'Произошла ошибка при регистрации проекта. Повторите попытку')
 
     else:
         form = CreateProjectForm()
