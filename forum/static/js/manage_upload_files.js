@@ -11,6 +11,7 @@ let filesData = {
     fileCount: 0,
 };
 
+
 document.getElementById("click_choose_files").addEventListener("click", function (){
     document.getElementById("id_files").click();
 })
@@ -60,34 +61,37 @@ function updateStateFiles() {
     }
 
     const fileList = dt.files;
-    uploadFilesToServer(fileList)
     let inputElement = document.getElementById('id_files');
     inputElement.files = fileList;
+
+    uploadFilesToServer(fileList);
 }
 
-function uploadFilesToServer(fileList) {
+function uploadFilesToServer(files) {
+    const uploadFilesUrl = document.getElementById('upload-files-url').getAttribute('data-url');
+    console.log("uploadFilesUrl 2 ", uploadFilesUrl)
+    console.log("FileList : ", files);
     let formData = new FormData();
-    for (let i = 0; i < fileList.length; i++) {
-        formData.append('files', fileList[i]);
+    for (let i = 0; i < files.length; i++) {
+        formData.append('files[]', files[i]);
     }
-    return formData
-    //     for (let i = 0; i < filesData.files.length; i++) {
-    //     formData.append('files', filesData.files[i]);
-    // }
-
-    // $.ajax({
-    //     url: "{% url 'vote:upload_files' %}",
-    //     type: 'POST',
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false,
-    //     success: function(data) {
-    //         console.log(data);
-    //         $('#upload-success').show();
-    //         $('#submitBtn').prop('disabled', false); // Делаем кнопку отправки активной после успешной загрузки
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.error(xhr.responseText);
-    //     }
-    // });
+    console.log(formData)
+    console.log("formData.values() :", formData.values())
+    $.ajax({
+        url: uploadFilesUrl,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            console.log(data);
+            // Добавьте дополнительную обработку ответа сервера здесь, если необходимо
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
 }
+
+
+

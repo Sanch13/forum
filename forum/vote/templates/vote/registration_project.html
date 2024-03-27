@@ -10,181 +10,186 @@
 
 {% block content %}
 
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 10; margin-bottom: 50px;">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success text-center" id="message">
-        {{ message }}
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 10; margin-bottom: 50px;">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success text-center" id="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
-    {% endfor %}
-    {% endif %}
-</div>
 
-<div class="justify-content-center">
-    <div class="col-12">
-        <h3 class="text-center my-3"> Форма регистрации проекта </h3>
-        <div class="mb-5"
-         style="border: 1px solid darkolivegreen; padding: 10px; border-radius: 5px;">
-        <form method="post" action="{% url 'vote:registration_project' %}"
-              enctype="multipart/form-data">
-            {% csrf_token %}
-{#             ФИО#}
-            <div class="mb-1">
-                <label for="{{ form.fio.id_for_label }}"
-                       class="form-label">{{ form.fio.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
-                    {{ form.fio }}
-                    <div class="input-group">
-                        {% for error in form.fio.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-{#             Адрес электронной почты#}
-            <div class="mb-1">
-                <label for="{{ form.email.id_for_label }}"
-                       class="form-label">{{ form.email.label }}<span
-                        class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
-                    {{ form.email }}
-                    <div class="input-group">
-                        {% for error in form.email.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-{#             Телефон#}
-            <div class="mb-1">
-                <label for="{{ form.phone.id_for_label }}"
-                       class="form-label">{{ form.phone.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
-                    <span class="input-group-text px-1">+375</span>
-                    <span class="input-group-text px-1"> ( </span>
-                    <div style="width: 40px; position: relative; z-index: 1;">
-                        <input type="text"
-                               name="code"
-                               maxlength="2"
-                               placeholder=""
-                               value="{{ form.code.value }}"
-                               class="form-control px-1 text-center"
-                               required=""
-                               id="id_code"
-                        >
-                    </div>
-                    <span class="input-group-text px-1"> )</span>
-                    <div style="flex: 3;">
-                        <input type="text"
-                               name="phone"
-                               maxlength="7"
-                               placeholder=""
-                               value="{{ form.phone.value }}"
-                               class="form-control px-1 text-left"
-                               style=""
-                               required=""
-                               id="id_phone">
-                    </div>
-                    <div class="input-group">
-                        {% for error in form.code.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}&nbsp;</b>
+    <div class="justify-content-center">
+        <div class="col-12">
+            <h3 class="text-center my-3"> Форма регистрации проекта </h3>
+            <div class="mb-5"
+                 style="border: 1px solid darkolivegreen; padding: 10px; border-radius: 5px;">
+                <form method="post" action="{% url 'vote:registration_project' %}"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {#             ФИО#}
+                    <div class="mb-1">
+                        <label for="{{ form.fio.id_for_label }}"
+                               class="form-label">{{ form.fio.label }}
+                            <span class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            {{ form.fio }}
+                            <div class="input-group">
+                                {% for error in form.fio.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                        {% for error in form.phone.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </div>
-{#             Именование проекта#}
-            <div class="mb-1">
-                <label for="{{ form.project_name.id_for_label }}"
-                       class="form-label">{{ form.project_name.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
-                    {{ form.project_name }}
-                    <div class="input-group">
-                        {% for error in form.project_name.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
+                    {#             Адрес электронной почты#}
+                    <div class="mb-1">
+                        <label for="{{ form.email.id_for_label }}"
+                               class="form-label">{{ form.email.label }}<span
+                                class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            {{ form.email }}
+                            <div class="input-group">
+                                {% for error in form.email.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-{#             Основная идея#}
-            <div class="mb-1">
-                <label for="{{ form.main_idea.id_for_label }}"
-                       class="form-label">{{ form.main_idea.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
-                    {{ form.main_idea }}
-                    <div class="input-group">
-                        {% for error in form.main_idea.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
+                    {#             Телефон#}
+                    <div class="mb-1">
+                        <label for="{{ form.phone.id_for_label }}"
+                               class="form-label">{{ form.phone.label }}
+                            <span class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            <span class="input-group-text px-1">+375</span>
+                            <span class="input-group-text px-1"> ( </span>
+                            <div style="width: 40px; position: relative; z-index: 1;">
+                                <input type="text"
+                                       name="code"
+                                       maxlength="2"
+                                       placeholder=""
+                                       value="{{ form.code.value }}"
+                                       class="form-control px-1 text-center"
+                                       required=""
+                                       id="id_code"
+                                >
+                            </div>
+                            <span class="input-group-text px-1"> )</span>
+                            <div style="flex: 3;">
+                                <input type="text"
+                                       name="phone"
+                                       maxlength="7"
+                                       placeholder=""
+                                       value="{{ form.phone.value }}"
+                                       class="form-control px-1 text-left"
+                                       style=""
+                                       required=""
+                                       id="id_phone">
+                            </div>
+                            <div class="input-group">
+                                {% for error in form.code.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}&nbsp;</b>
+                                    </div>
+                                {% endfor %}
+                                {% for error in form.phone.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-{#             Краткое описание проекта#}
-            <div class="mb-1">
-                <label for="{{ form.project_description.id_for_label }}" class="form-label">
-                    {{ form.project_description.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group">
-                    {{ form.project_description }}
-                    <div class="input-group">
-                        {% for error in form.project_description.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
+                    {#             Именование проекта#}
+                    <div class="mb-1">
+                        <label for="{{ form.project_name.id_for_label }}"
+                               class="form-label">{{ form.project_name.label }}
+                            <span class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            {{ form.project_name }}
+                            <div class="input-group">
+                                {% for error in form.project_name.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-{#             Файлы проекта#}
-            <div class="mb-1">
-                <label class="form-label">Файлы проекта : <span id="file-count" class="text-center"></span></label>
+                    {#             Основная идея#}
+                    <div class="mb-1">
+                        <label for="{{ form.main_idea.id_for_label }}"
+                               class="form-label">{{ form.main_idea.label }}
+                            <span class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            {{ form.main_idea }}
+                            <div class="input-group">
+                                {% for error in form.main_idea.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#             Краткое описание проекта#}
+                    <div class="mb-1">
+                        <label for="{{ form.project_description.id_for_label }}" class="form-label">
+                            {{ form.project_description.label }}
+                            <span class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            {{ form.project_description }}
+                            <div class="input-group">
+                                {% for error in form.project_description.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#             Файлы проекта#}
+                    <div class="mb-1">
+                        <label class="form-label">Файлы проекта : <span id="file-count"
+                                                                        class="text-center"></span></label>
 
-                <div class="input-group">
-                    <input type="file" name="files" id="id_files" multiple
-                           style="display: none;">
-                    <button id="click_choose_files" class="btn btn-success rounded"
-                            type="button">Выбрать
-                        файлы
-                    </button>
-                </div>
-                <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
-                <div><span id="upload-success" style="display: none;">Файлы успешно загружены.</span></div>
-            </div>
-{#             Капча#}
-            <div class="mb-1">
-            <label for="{{ form.captcha.id_for_label }}" class="form-label">
-                    {{ form.captcha.label }}
-                    <span class="text-danger"><b>*</b></span></label>
-                <div class="input-group" >
-                    {{ form.captcha }}
-                    <div class="input-group">
-                        {% for error in form.captcha.errors %}
-                            <div class="error-message text-danger"><b>{{ error }}</b></div>
-                        {% endfor %}
+                        <div class="input-group">
+                            <input type="file" name="files" id="id_files" multiple
+                                   style="display: none;">
+                            <button id="click_choose_files" class="btn btn-success rounded"
+                                    type="button">Выбрать
+                                файлы
+                            </button>
+                        </div>
+                        <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
+                        <div><span id="upload-success" style="display: none;">Файлы успешно загружены.</span>
+                        </div>
                     </div>
-                </div>
+                    {#             Капча#}
+                    <div class="mb-1">
+                        <label for="{{ form.captcha.id_for_label }}" class="form-label">
+                            {{ form.captcha.label }}
+                            <span class="text-danger"><b>*</b></span></label>
+                        <div class="input-group">
+                            {{ form.captcha }}
+                            <div class="input-group">
+                                {% for error in form.captcha.errors %}
+                                    <div class="error-message text-danger"><b>{{ error }}</b></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {#            <!-- Чекбокс -->#}
+                    <div class="mb-1 form-check">
+                        <input class="form-check-input" type="checkbox" id="checkboxAgree">
+                        <label class="form-check-label" for="checkboxAgree">
+                            Я согласен на обработку моих персональных данных
+                        </label>
+                    </div>
+                    <div class="text-center my-3">
+                        <button type="submit" class="btn btn-success send-data" id="submitBtn"
+                                disabled>
+                            Отправить данные на регистрацию
+                        </button>
+                    </div>
+                </form>
             </div>
-{#            <!-- Чекбокс -->#}
-            <div class="mb-1 form-check">
-                <input class="form-check-input" type="checkbox" id="checkboxAgree">
-                <label class="form-check-label" for="checkboxAgree">
-                    Я согласен на обработку моих персональных данных
-                </label>
-            </div>
-            <div class="text-center my-3">
-                <button type="submit" class="btn btn-success send-data" id="submitBtn" disabled>
-                    Отправить данные на регистрацию
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-    </div>
-</div>
+<div id="upload-files-url" data-url="{% url 'vote:upload_files' %}"></div>
+<div id="static-prefix" data-prefix="{% get_static_prefix %}"></div>
 
 <script src="{% static 'js/manage_upload_files.js' %}"></script>
 <script src="{% static 'js/hide_alert_msg.js' %}"></script>
@@ -197,25 +202,7 @@
     });
 </script>
 
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-$.ajax({
-    url: '{% url 'vote:upload_files' %}',
-    type: 'POST',
-    data: uploadFilesToServer,
-    processData: false,
-    contentType: false,
-    success: function(data) {
-        console.log(data);
-        $('#upload-success').show();
-        $('#submitBtn').prop('disabled', false); // Делаем кнопку отправки активной после успешной загрузки
-    },
-    error: function(xhr, status, error) {
-        console.error(xhr.responseText);
-    }
-
-});
-</script>
-
-
 {% endblock content %}
+

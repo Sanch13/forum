@@ -55,23 +55,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'forum.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': settings.ENGINE,
-        'NAME': settings.NAME_DB,
-        'USER': settings.USER,
-        'PASSWORD': settings.PASSWORD,
-        'HOST': settings.HOST,
-        'PORT': settings.PORT,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': settings.ENGINE,
+#         'NAME': settings.NAME_DB,
+#         'USER': settings.USER,
+#         'PASSWORD': settings.PASSWORD,
+#         'HOST': settings.HOST,
+#         'PORT': settings.PORT,
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -112,3 +112,4 @@ CAPTCHA_FONT_SIZE = 30
 CAPTCHA_LETTER_ROTATION = (-20, 20)
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null', 'captcha.helpers.noise_arcs', 'captcha.helpers.noise_dots',)
+CAPTCHA_TIMEOUT = 90
