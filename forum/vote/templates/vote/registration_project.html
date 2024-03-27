@@ -6,6 +6,14 @@
 {% endblock title %}
 
 {% block css %}
+    <style>
+        .btn-miran:hover {
+            filter: brightness(80%);
+        }
+        .btn-miran {
+            background-color: #C4D126;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -148,9 +156,8 @@
                         <div class="input-group">
                             <input type="file" name="files" id="id_files" multiple
                                    style="display: none;">
-                            <button id="click_choose_files" class="btn btn-success rounded"
-                                    type="button">Выбрать
-                                файлы
+                            <button id="click_choose_files" class="btn btn-miran rounded"
+                                    type="button" style="background-color: #C4D126;">Выбрать файлы
                             </button>
                         </div>
                         <div id="file-names" class="mt-2 d-flex flex-wrap"></div>
@@ -179,8 +186,8 @@
                         </label>
                     </div>
                     <div class="text-center my-3">
-                        <button type="submit" class="btn btn-success send-data" id="submitBtn"
-                                disabled>
+                        <button type="submit" class="btn btn-miran send-data" id="submitBtn"
+                                style="background-color: #C4D126;" disabled>
                             Отправить данные на регистрацию
                         </button>
                     </div>
