@@ -105,8 +105,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-RECAPTCHA_PUBLIC_KEY = 'MyRecaptchaKey123'
-RECAPTCHA_PRIVATE_KEY = 'MyRecaptchaPrivateKey456'
+CELERY_TIMEZONE = "Europe/Minsk"
+CELERY_BROKER_URL = 'redis://localhost:6381'
+CELERY_RESULT_BACKEND = 'redis://localhost:6381'
 
 CAPTCHA_FONT_SIZE = 30
 CAPTCHA_LETTER_ROTATION = (-20, 20)
